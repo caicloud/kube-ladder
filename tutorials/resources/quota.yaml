@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: tutorial-quota
+  namespace: tutorial
+spec:
+  hard:
+    # Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value.
+    requests.cpu: "1"
+    # Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value.
+    requests.memory: 1Gi
+    # Across all pods in a non-terminal state, the sum of CPU limits cannot exceed this value.
+    limits.cpu: "2"
+    # Across all pods in a non-terminal state, the sum of memory limits cannot exceed this value.
+    limits.memory: 2Gi

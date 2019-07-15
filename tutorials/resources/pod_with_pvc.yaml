@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-with-pvc
+spec:
+  containers:
+    - name: nginx
+      image: cargo.caicloud.io/caicloud/nginx:1.9.3
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim
