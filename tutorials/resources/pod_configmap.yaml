@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: tutorial
+  name: pod-configmap
+spec:
+  restartPolicy: Never
+  containers:
+    - name: test-container
+      image: cargo.caicloud.io/caicloud/busybox:1.26
+      command: ["/bin/sh"]
+      args: ["-c", "cat /etc/config/game.properties && cat /etc/config/ui.properties"]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+      resources:
+        requests:
+          cpu: "0.1"
+          memory: "100Mi"
+        limits:
+          cpu: "0.1"
+          memory: "100Mi"
+  volumes:
+    - name: config-volume
+      configMap:
+        name: game-config

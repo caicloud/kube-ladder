@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debian
+  labels:
+    app: web
+spec:
+  containers:
+    - name: debian
+      image: cargo.caicloud.io/caicloud/debian:jessie
+      resources:
+        requests:
+          cpu: "0.1"
+          memory: "100Mi"
+        limits:
+          cpu: "0.1"
+          memory: "100Mi"
