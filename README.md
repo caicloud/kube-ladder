@@ -219,7 +219,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 总结一下，1）本阶段我们接触到更多的资源，包括：HPA、Job、CronJob、DaemonSet、StatefulSet、Ingress、Volume、PV/PVC、StorageClass、NetworkPolicy、PSP。2）更加深入了解已学资源的使用，例如 Init-Container、SecurityContext、Affinity 等。这些能力最终都会体现在各个资源的 API 上，例如 Affinity 是 Pod API 结构的一个字段，Scheduler 通过解析这个字段来进行合理的调度。未来如果有更多的能力，我们都可以通过解读不同资源的 API 字段来一探究竟。
 
-本阶段相关学习可以参考文档 [lab4](https://github.com/caicloud/kube-ladder/blob/master/tutorials/4-concepts-104.md)。
+本阶段相关学习可以参考文档 [lab4](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab4-concepts.md)。
 
 #### 心法
 
