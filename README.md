@@ -368,7 +368,6 @@ Twitter 账号
 - [Joe Beda](https://twitter.com/jbeda)
 - [Brendan Burns](https://twitter.com/brendandburns)
 - [Michelle Noorali](https://twitter.com/michellenoorali)
-- [Donald J. Trump](https://twitter.com/realDonaldTrump)
 
 除此之外，Twitter 上还有不少项目和其他 Weekly 性质的 Twitter，推荐几个账号关注：
 
