@@ -69,7 +69,7 @@
 
 #### 路径
 
-学习任何系统的之前，了解其出现的背景和意义都是必不可少的，为什么会出现 Kubernetes？它解决了什么问题？有没有其他类似的系统？这里推荐阅读才云科技 CEO 张鑫在 2017 年文章《[从风口浪尖到十字路口，写在Kubernetes 两周年之际](https://mp.weixin.qq.com/s/hrgXzt7YKVf6ZCFzJ-WTFA)》。
+学习任何系统的之前，了解其出现的背景和意义都是必不可少的，为什么会出现 Kubernetes？它解决了什么问题？有没有其他类似的系统？这里推荐阅读才云科技 CEO 张鑫在 2017 年文章《[从风口浪尖到十字路口，写在 Kubernetes 两周年之际](https://mp.weixin.qq.com/s/hrgXzt7YKVf6ZCFzJ-WTFA)》。
 
 接下来，在了解 Kubernetes 系统本质之前，我们需要对 Kubernetes 有一个较为"感性"的认识，打消对 Kubernetes 的畏难情绪。这里，我们推荐使用 [minikube](https://github.com/kubernetes/minikube) 或 [kind](https://github.com/kubernetes-sigs/kind) 部署一个本地环境，然后开始部署一个"真实"的应用（minikube 安装需要使用科学上网）。如果想一开始就挑战更高难度的安装方式（不推荐），可以使用 kubeadm，local-cluster 或者手动部署所有组件。关于安装，可以参考文档 [lab1-installation](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab1-installation.md)。
 
@@ -412,7 +412,7 @@ FlexVolume 是 Kubernetes 自带的对接外部存储的方案，用户编写少
 
 #### 心法
 
-<p align="center" style="font-size: 50px">😇</p>
+<p align="center" style="font-size: 50px">:godmode:</p>
 
 - 推荐实现一个端到端的 Kubernetes 控制器，可以对整个 Kubernetes 的二次开发有更加深入的了解。此外，针对所有的扩展能力，建议先建立一个全面的认识，再根据需要深入某一项能力。
 - 我们除了通过用户手册来学习上面的技术，也可多参考 Kubernetes 的花式设计文档，主要是 [Design Proposals](https://github.com/kubernetes/community/tree/master/contributors/design-proposals)、[KEPs](https://github.com/kubernetes/enhancements/tree/master/keps)。
@@ -437,7 +437,7 @@ FlexVolume 是 Kubernetes 自带的对接外部存储的方案，用户编写少
 - [Helm](https://github.com/helm/helm)：作为 Kubernetes 生态里的 brew、dnf、dpkg，Helm 为 Kubernetes 提供了包管理能力，方便用户快速部署安装各种服务。
 - [Harbor](https://github.com/goharbor/harbor)：Harbor 与 Kubernetes 无直接关系，但作为云原生环境下最常用的镜像仓库解决方案，了解 Harbor 十分重要。
 - [Prometheus](https://prometheus.io/)：Prometheus 是云原生环境下最重要的监控组件。
-- [Istio](https://istio.io/)：istio 是服务网格的关键项目，但较为复杂，可以尝试简单了解。
+- [Istio](https://istio.io/)：Istio 是服务网格的关键项目，但较为复杂，可以尝试简单了解。
 
 以上，我们仅列出了极少量的重要项目，Kubernetes 周边的项目十分之多，令人咂舌 😱。因此大乘期的你，需要开始持续跟踪 Kubernetes 及其生态的发展，甚至可以推动其发展，接下来我们列举一些靠谱资源：
 
@@ -481,13 +481,13 @@ Twitter 会根据你的喜好推荐其他相关内容，接下来就自由发挥
 
 #### 心法
 
-<p align="center" style="font-size: 50px">🐉</p>
+<p align="center" style="font-size: 50px">🐲</p>
 <p align="center" style="font-size: 18px">请坚持学习！送上一句黑鸡汤：</p>
 <p align="center" style="font-size: 30px">"The last thing you want is to look back on your life and wonder... if only."
 </p>
 
 ## 许可协议
 
-- 本文遵守[创作共享 CC BY-NC-SA 3.0协议](https://creativecommons.org/licenses/by-nc-sa/3.0/cn/)
+- 本文遵守[创作共享 CC BY-NC-SA 3.0 协议](https://creativecommons.org/licenses/by-nc-sa/3.0/cn/)
 - 商业目的转载，请联系 <marketing@caicloud.io>
 - 如有任何版权问题，请联系 <deyuan@caicloud.io> 和 <baomengjiang@caicloud.io>
