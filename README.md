@@ -1,37 +1,39 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Kubernetes 学习路径](#kubernetes-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84)
+  - [背景](#%E8%83%8C%E6%99%AF)
+  - [学习路径](#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84)
+    - [第一阶段 炼气期（2-4 周，每周 3-5 小时）](#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5-%E7%82%BC%E6%B0%94%E6%9C%9F2-4-%E5%91%A8%E6%AF%8F%E5%91%A8-3-5-%E5%B0%8F%E6%97%B6)
+      - [目标](#%E7%9B%AE%E6%A0%87)
+      - [路径](#%E8%B7%AF%E5%BE%84)
+      - [心法](#%E5%BF%83%E6%B3%95)
+    - [第二阶段 筑基期（4-6 周，每周 8-10 小时）](#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E7%AD%91%E5%9F%BA%E6%9C%9F4-6-%E5%91%A8%E6%AF%8F%E5%91%A8-8-10-%E5%B0%8F%E6%97%B6)
+      - [目标](#%E7%9B%AE%E6%A0%87-1)
+      - [路径](#%E8%B7%AF%E5%BE%84-1)
+      - [心法](#%E5%BF%83%E6%B3%95-1)
+    - [第三阶段 金丹期（2-4 周，每周 3-5 小时）](#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5-%E9%87%91%E4%B8%B9%E6%9C%9F2-4-%E5%91%A8%E6%AF%8F%E5%91%A8-3-5-%E5%B0%8F%E6%97%B6)
+      - [目标](#%E7%9B%AE%E6%A0%87-2)
+      - [路径](#%E8%B7%AF%E5%BE%84-2)
+      - [心法](#%E5%BF%83%E6%B3%95-2)
+    - [第四阶段 元婴期（4-6 周，每周 8-10 小时）](#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5-%E5%85%83%E5%A9%B4%E6%9C%9F4-6-%E5%91%A8%E6%AF%8F%E5%91%A8-8-10-%E5%B0%8F%E6%97%B6)
+      - [目标](#%E7%9B%AE%E6%A0%87-3)
+      - [路径](#%E8%B7%AF%E5%BE%84-3)
+      - [心法](#%E5%BF%83%E6%B3%95-3)
+    - [第五阶段 化神期（4-6 周，每周 8-10 小时）](#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5-%E5%8C%96%E7%A5%9E%E6%9C%9F4-6-%E5%91%A8%E6%AF%8F%E5%91%A8-8-10-%E5%B0%8F%E6%97%B6)
+      - [目标](#%E7%9B%AE%E6%A0%87-4)
+      - [路径](#%E8%B7%AF%E5%BE%84-4)
+      - [心法](#%E5%BF%83%E6%B3%95-4)
+    - [第六阶段 大乘期（终身学习）](#%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5-%E5%A4%A7%E4%B9%98%E6%9C%9F%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0)
+      - [目标](#%E7%9B%AE%E6%A0%87-5)
+      - [路径](#%E8%B7%AF%E5%BE%84-5)
+      - [心法](#%E5%BF%83%E6%B3%95-5)
+  - [许可协议](#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Kubernetes 学习路径
-
-## 目录
-
-   * [Kubernetes 学习路径](#kubernetes-学习路径)
-      * [背景](#背景)
-      * [学习路径](#学习路径)
-         * [第一阶段 炼气期（2-4 周，每周 3-5 小时）](#第一阶段-炼气期2-4-周每周-3-5-小时)
-            * [目标](#目标)
-            * [路径](#路径)
-            * [心法](#心法)
-         * [第二阶段 筑基期（4-6 周，每周 8-10 小时）](#第二阶段-筑基期4-6-周每周-8-10-小时)
-            * [目标](#目标-1)
-            * [路径](#路径-1)
-            * [心法](#心法-1)
-         * [第三阶段 金丹期（2-4 周，每周 3-5 小时）](#第三阶段-金丹期2-4-周每周-3-5-小时)
-            * [目标](#目标-2)
-            * [路径](#路径-2)
-            * [心法](#心法-2)
-         * [第四阶段 元婴期（4-6 周，每周 8-10 小时）](#第四阶段-元婴期4-6-周每周-8-10-小时)
-            * [目标](#目标-3)
-            * [路径](#路径-3)
-            * [心法](#心法-3)
-         * [第五阶段 化神期（4-6 周，每周 8-10 小时）](#第五阶段-化神期4-6-周每周-8-10-小时)
-            * [目标](#目标-4)
-            * [路径](#路径-4)
-            * [心法](#心法-4)
-         * [第六阶段 大乘期（终身学习）](#第六阶段-大乘期终身学习)
-            * [目标](#目标-5)
-            * [路径](#路径-5)
-            * [心法](#心法-5)
-      * [许可协议](#许可协议)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ## 背景
 
@@ -70,7 +72,6 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 在安装好环境之后，可以开始动手实践最基本的 Kubernetes 概念。在第一阶段，我们推荐熟练使用以下常用资源和概念：Pod、Node、Label、Event、Service、Configmap & Secret、Deployment、Namespace。相关学习可以参考文档 [lab2-application-and-service](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab2-application-and-service.md)。
 
 （可选）仅完成上述内容可能还不足以让我们非常熟悉 Kubernetes 的基本概念，下面列出其他可以参考的资料，大家也可以按照自己的方式去搜索相关的资料：
-
 - 官方 Tutorial：[Learn Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - 官方 Guestbook 样例：[Guestbook Example](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
 
@@ -98,7 +99,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 - Master 组件
   - API Server。Kubernetes 如何接收请求，又是如何将结果返回至客户端。
   - Controller Manager。Kubernetes 控制器是其架构中最为核心的一环，我们需要了解控制器的原理，List-Watch 的基本原理，知道 Kubernetes 默认情况下大致包含哪些类型的控制器。
-  - Scheduler。熟悉 Kubernetes 的调度流程是怎样的，调度器在整个调度流程中的角色。
+  - [Scheduler](https://kubernetes.io/docs/concepts/scheduling/kube-scheduler/)。熟悉 Kubernetes 的调度流程是怎样的，调度器在整个调度流程中的角色。
 - Node 组件
   - Kubelet。知道 Kubelet 是如何接受调度请求并启动容器的。
   - Kube-proxy。了解 Kube-proxy 的作用，提供的能力是什么。
@@ -121,7 +122,6 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 <p align="center" style="font-size: 50px">💪</p>
 
 - 请不要死记硬背 Kubernetes 架构，要开动大脑 🧠去理解其背后设计的原因。
-
 - 筑基期是比较困难的一个阶段，如果感觉一头雾水，请不要气垒，你不是一个人。当你感觉进入了瓶颈时，可以尝试寻找身边的战友，总结一些你的问题并寻求答案 🍻。
 
 ### 第三阶段 金丹期（2-4 周，每周 3-5 小时）
@@ -166,7 +166,6 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 作为一个承上启下的阶段，我们需要总结一些 Kubernetes 排错的能力，推荐阅读：
 
 - 官方文档：[Kubernetes Troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/troubleshooting/)
-
 - feisky 的博客：[Kubernetes 集群排错指南](https://feisky.gitbooks.io/kubernetes/troubleshooting/)
 
 #### 心法
@@ -239,7 +238,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 本阶段我们可以开始了解 Kubernetes [各种扩展机制](https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/)。如果说 Kubernetes 的 API 和架构设计是其重要的基石，那么扩展机制使得 Kubernetes 在各个生态领域开花结果。下面我们尝试列举出所有的扩展方式，每一种扩展都有其优势和局限性，请自行思考。注意这里提到的扩展机制指的是架构上的扩展，而非功能层面的扩展，例如 Pod 支持各种 Probe 来进行健康检查，包括自定义，这里我们不归为扩展机制的能力。
 
-API 资源扩展能力
+*API 资源扩展能力*
 
 - [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)：保存少量非结构化第三方数据
 - [Finalizer](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#finalizers)：资源删除时，用户调用外部系统的钩子
@@ -254,22 +253,22 @@ API 资源扩展能力
 - [shell-operator](https://github.com/flant/shell-operator)：适合运维开发使用的 shell operator 库
 - [meta-controller](https://metacontroller.app/)：来自 Google 的一个更加"傻瓜"式编写控制器的库
 
-API 访问扩展能力
+*API 访问扩展能力*
 
 - [认证 Webhook](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication)：用户认证时，调用外部服务，仅支持静态配置
 - [鉴权 Webhook](https://kubernetes.io/docs/reference/access-authn-authz/webhook/)：用户鉴权时，调用外部服务，仅支持静态配置
-- 动态[访问控制 Webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)：请求访问控制时，调用外部服务，支持动态增加外部服务
+- [动态访问控制 Webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)：请求访问控制时，调用外部服务，支持动态增加外部服务
 
 Kubernetes API 访问扩展主要是通过 Webhook 来实现。注意只有访问控制支持动态增加外部服务，认证鉴权的外部服务在启动 API Server 的时候就注册完毕，无法在后续增加，主要原因是动态增加外部认证鉴权服务，带来的安全风险过大。
 
-调度器扩展能力
+*调度器扩展能力*
 
 - [扩展接口（Scheduler Extender）](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/scheduling/scheduler_extender.md)：类似 Webhook，调用外部服务进行调度决策
 - [多调度器](https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/)：支持在 Kubernetes 运行多个调度器调度不同作业
 
 针对简单场景，我们可以直接使用 Scheduler Extender 即可，例如按 GPU 型号调度。复杂调度场景可以使用多调度器，例如基于流图的调度器 [poseidon](https://kubernetes.io/docs/concepts/extend-kubernetes/poseidon-firmament-alternate-scheduler/)。一般而言，使用 Extender 即可满足大多数场景。
 
-网络扩展能力
+*网络扩展能力*
 
 - [网络插件 CNI](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/)：使用 CNI 插件，可以选择任何我们需要的[网络方案](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 - [自定义 Ingress 控制器](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)：Ingress 定义了一套 API 接口，我们可以选择任意实现
@@ -278,39 +277,39 @@ Kubernetes API 访问扩展主要是通过 Webhook 来实现。注意只有访�
 
 网络插件 CNI 是容器网络标准，Kubernetes 提供了良好的支持，常用插件包括 flannel、Calico 等等。对于 Ingress、NetworkPolicy、DNS，相信到目前为止大家应该可以理解，其本质上是 Kubernetes 定义的一套 API，底层实现可插拔，用户可以有自己的选择。
 
-存储扩展能力
+*存储扩展能力*
 
 - [FlexVolume](https://kubernetes.io/docs/concepts/storage/volumes/#flexVolume)：Kubernetes 提供的一种动态对接存储方案，支持用户自定义存储后端
 - [存储插件 CSI](https://kubernetes-csi.github.io)：使用 CSI 插件，可以选择任何我们需要的存储方案
 
 FlexVolume 是 Kubernetes 自带的对接外部存储的方案，用户编写少量的代码即可加入自定义存储后端，适用于简单场景。存储插件 CSI 是容器网络标准，Kubernetes 提供了良好的支持，同时为方便第三方实现，还提供了一整套 SDK 解决方案。所有底层存储相关的能力都与 CSI 密切相关。
 
-运行时扩展能力
+*运行时扩展能力*
 
 - [运行时接口 CRI](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)：使用 CRI 插件，可以选择任何我们需要的运行时方案
 
 运行时接口 CRI 是 Kubernetes 提出，为解决支持多种运行时而提供的方案。任何运行时，只需实现 CRI 相关的接口，即可接入 Kubernetes 中，包括 Docker、Containerd、gVisor、Kata 等。
 
-特殊硬件或资源扩展能力
+*特殊硬件或资源扩展能力*
 
 - [扩展资源 Extended Resource](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#extended-resources)：通过 Kubernetes 原生 API 方式支持添加自定义资源
 - [设备插件 Device Plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/)：使用 Device Plugin 插件，可以对接任何我们需要的硬件
 
 对于简单场景，例如静态汇报资源数量，可以直接使用 Extended Resource 扩展 Kubernetes 所支持的硬件。Device Plugin 的核心是自动接入各种特殊硬件如 Nvidia、Infiniband、FPGA 等。在资源汇报层面 Device Plugin 目前也使用了 Extended Resource 的能力，但由于 Extended Resource 的局限性，Device Plugin 未来也可以与其他 API 对接。目前使用最多的 Device Plugin 主要是 Nvidia 的 [GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)。
 
-监控扩展能力
+*监控扩展能力*
 
 - [自定义监控](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis)：支持使用自定义监控组件如 Prometheus 提供监控指标
 
 自定义监控包括 Custom Metrics 和 External Metrics，例如 [Prometheus adaptor](https://github.com/DirectXMan12/k8s-prometheus-adapter)。
 
-云供应商扩展能力
+*云供应商扩展能力*
 
 - [云控制器 Cloud Controller Manager](https://kubernetes.io/docs/concepts/architecture/cloud-controller/)：支持可插拔云服务提供商
 
 云扩展能力的目标是使各个云供应商可以在不改变 Kubernetes 源码的情况下，接入其服务。每个云供应商都有[独立的项目](https://github.com/kubernetes?utf8=%E2%9C%93&q=cloud-provider&type=&language=)。
 
-命令行插件
+*命令行插件*
 
 - [Kubectl Plugin](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/)：kubectl plugin 支持扩展 kubectl 子命令，与 API 扩展能力结合可以提供近乎原生的使用方法。
 
@@ -345,7 +344,7 @@ FlexVolume 是 Kubernetes 自带的对接外部存储的方案，用户编写少
 
 以上，我们仅列出了极少量的重要项目，Kubernetes 周边的项目十分之多，令人咂舌 😱。因此大乘期的你，需要开始持续跟踪 Kubernetes 及其生态的发展，甚至可以推动其发展，接下来我们列举一些靠谱资源：
 
-GitHub 仓库
+*GitHub 仓库*
 
 - [Kubernetes Enhancement](https://github.com/kubernetes/enhancements/)：关注新特性的讨论
 - [Kubernetes Community](https://github.com/kubernetes/community)：关注社区组织情况
@@ -354,7 +353,7 @@ GitHub 仓库
 
 关注 GitHub 仓库可以让你了解最一手的进展，但是信息量一般较大，讨论很多难度也比较大。不过对于大乘期的你来讲，应该不是问题 😉。另外，这里还包含很多 Kubernetes 系统内部的设计，例如调度器的优化方案、资源垃圾回收方案等，值得了解和学习。
 
-Twitter 账号
+*Twitter 账号*
 
 下面推荐几个 Kubernetes 项目的核心人员。大牛都喜欢用 Twitter 交（si）流（bi），可以关注一波。感兴趣的话题可以去交流，大牛都十分耐撕（nice。
 
@@ -376,7 +375,7 @@ Twitter 账号
 
 Twitter 会根据你的喜好推荐其他相关内容，接下来就自由发挥。
 
-Blog 账号
+*Blog 账号*
 
 - [Kubernetes Blog](https://kubernetes.io/blog/)
 - [CNCF Blog](https://www.cncf.io/category/blog/)
