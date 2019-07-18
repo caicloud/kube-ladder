@@ -21,14 +21,18 @@
       - [目标](#%E7%9B%AE%E6%A0%87-3)
       - [路径](#%E8%B7%AF%E5%BE%84-3)
       - [心法](#%E5%BF%83%E6%B3%95-3)
-    - [第五阶段 化神期（4-6 周，每周 8-10 小时）](#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5-%E5%8C%96%E7%A5%9E%E6%9C%9F4-6-%E5%91%A8%E6%AF%8F%E5%91%A8-8-10-%E5%B0%8F%E6%97%B6)
+    - [第五阶段 化神期（3-5 周，每周 6-8 小时）](#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5-%E5%8C%96%E7%A5%9E%E6%9C%9F3-5-%E5%91%A8%E6%AF%8F%E5%91%A8-6-8-%E5%B0%8F%E6%97%B6)
       - [目标](#%E7%9B%AE%E6%A0%87-4)
       - [路径](#%E8%B7%AF%E5%BE%84-4)
       - [心法](#%E5%BF%83%E6%B3%95-4)
-    - [第六阶段 大乘期（终身学习）](#%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5-%E5%A4%A7%E4%B9%98%E6%9C%9F%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0)
+    - [第六阶段 练虚期（4-6 周，每周 8-10 小时）](#%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5-%E7%BB%83%E8%99%9A%E6%9C%9F4-6-%E5%91%A8%E6%AF%8F%E5%91%A8-8-10-%E5%B0%8F%E6%97%B6)
       - [目标](#%E7%9B%AE%E6%A0%87-5)
       - [路径](#%E8%B7%AF%E5%BE%84-5)
       - [心法](#%E5%BF%83%E6%B3%95-5)
+    - [第七阶段 大乘期（终身学习）](#%E7%AC%AC%E4%B8%83%E9%98%B6%E6%AE%B5-%E5%A4%A7%E4%B9%98%E6%9C%9F%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0)
+      - [目标](#%E7%9B%AE%E6%A0%87-6)
+      - [路径](#%E8%B7%AF%E5%BE%84-6)
+      - [心法](#%E5%BF%83%E6%B3%95-6)
   - [许可协议](#%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -179,7 +183,6 @@
 #### 目标
 
 - 加深对各个资源的理解
-- 学习 Kubernetes 集群能力
 - 学习更多 Kubernetes 概念和知识
 
 #### 路径
@@ -227,7 +230,101 @@
 - 本阶段难度指数高，请合理调整你的心境。渡劫成功后，你对 Kubernetes 的掌握将会进入一个新的台（tian）阶（keng）。
 - 学习相关功能时，可以回顾其所在 SIG，看看能不能发现有用的资源。
 
-### 第五阶段 化神期（4-6 周，每周 8-10 小时）
+### 第五阶段 化神期（3-5 周，每周 6-8 小时）
+
+#### 目标
+
+- 学习更多 Kubernetes 集群层面的功能
+- 更加深入学习 Kubernetes 架构和组件能力
+
+#### 路径
+
+当我们了解了 Kubernetes API 的设计理念，学习到了足够多的 API 资源及其使用方法之后，让我们再回顾一下 Kubernetes Master & Node 架构，以及他们运行的组件。事实上，Kubernetes 的每个组件都有很强的可配置性和能力，我们可以围绕 Kubernetes 的每个组件，来学习 Kubernetes 较为“隐晦”的功能。
+
+推荐通过 Kubernetes Command Line Reference 来了解这些组件的配置：
+- [kube-api-server](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
+- [kube-scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)
+- [kube-controller-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)
+- [kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)
+- [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
+
+同时，Kubernetes 提供了 [FeatureGate](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) 来控制不同的特性开关，我们可以通过 FeatureGate 来了解 Kubernetes 的新特性。此外，为了方便开发者和配置管理，Kubernetes 把所有配置都挪到了相对应的 GitHub 代码仓库中，即：
+- https://github.com/kubernetes/kube-scheduler
+- https://github.com/kubernetes/kube-controller-manager
+- https://github.com/kubernetes/kubelet
+- https://github.com/kubernetes/kube-proxy
+- https://github.com/kubernetes/kubectl
+
+当然，直接裸看配置有点硬核。为方便入手，下面我们简单总结部分功能（笼统的分为 Master 和 Node）：
+
+*Master*
+
+- [Dynamic Admission Control](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
+  - 动态准入控制（在练虚期阶段需要更加深入的了解）
+  - 对应 API Server `--admission-control-config-file` 参数
+- [Advanced Auditing](https://kubernetes.io/docs/tasks/debug-application-cluster/audit)
+  - 提供可动态配置的审计功能
+  - 对应 API Server 带有 `--audit-` 前缀的参数
+- Etcd Configuration
+  - 提供各种与 Etcd 相关的配置，例如 Kubernetes event TTL
+  - 对应 API Server 带有 `--etcd-` 前缀的参数
+- All Admission Controllers
+  - 列举所有 Kubernetes 所支持的 Admission Controllers，每个 Admission 都与 Kubernetes 特定的功能相关联
+  - 对应 API Server `--enable-admission-plugins` 参数，该参数注释列举了所有的默认 Admission Controllers
+- [Garbage Collection](https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/)
+  - 启用后，Kubernetes 会自动根据 `OwnerReferences` 来回收 API 资源
+  - 对应 Controller-Manager `--enable-garbage-collector` 参数
+- Concurrent Sync Limiting
+  - 避免过多的资源同步导致集群资源的消耗
+  - 对应 Controller-Manager 带有 `--concurrent` 前缀的参数
+- All Controllers
+  - 列举所有 Kubernetes 所支持的 Controllers，每个 Controller 都与 Kubernetes 特定的功能相关联
+  - 对应 Controller-Manager `--controllers`，该参数注释列举了所有的默认 Controllers
+
+其它值得注意的参数包括：
+- API-Server `--max-requests-inflight`, `--min-request-timeout`
+- API-Server `--watch-cache`, `--watch-cache-sizes`
+- Controller-Manager `--node-eviction-rate`
+- Controller-Manager `--pod-eviction-timeout`
+- Controller-Manager `--terminated-pod-gc-threshold`
+- Controller-Manager `--pv-recycler-minimum-timeout-*`
+
+*Node*
+
+- [Kubelet Eviction](https://kubernetes.io/docs/tasks/administer-cluster/out-of-resource/)
+  - 当节点资源不足时，Kubernetes 通过驱逐 Pods 的方式确保节点的稳定性
+  - 对应 Kubelet 带有 `--eviction-` 前缀的参数，例如 `--eviction-hard`
+- [Image GC](https://kubernetes.io/docs/concepts/cluster-administration/kubelet-garbage-collection/)
+  - 清理容器镜像占用的磁盘空间
+  - 对应 Kubelet 带有 `--image-gc-` 前缀的参数，以及 `--minimum-image-ttl-duration` 等参数
+- [Resource Reserve](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/)
+  - 为系统资源预留一定的资源，确保节点的稳定性
+  - 对应 Kubelet `--kube-reserved`、`--kube-reserved-cgroup` 等参数
+- [CPU Manager](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)
+  - 提供更多的 CPU 管理能力，例如静态 CPU 亲和性
+  - 对应 Kubelet `--cpu-manager-*` 前缀的参数
+- [Storage Limit](https://kubernetes.io/docs/concepts/storage/storage-limits)
+  - 避免节点过度挂载数据卷
+  - 对应 FeatureGate `AttachVolumeLimit`
+
+其它值得注意的参数包括：
+- Kubelet & Kubeproxy `--hostname-override`
+- Kubelet `--cgroups-per-qos`
+- Kubelet `--fail-swap-on`
+- Kubelet `--host-*`
+- Kubelet `--max-pods`, `--pods-per-core`
+- Kubelet `--resolv-conf`
+- Kubeproxy `--nodeport-addresses`
+
+#### 心法
+
+<p align="center" style="font-size: 50px">😇</p>
+
+- 通过组件配置学习 Kubernetes 功能是我们需要具备的一个常规能力，或许比较枯燥，但对我们的修炼大有裨益。
+- 如果你对 Kubernetes “无穷无尽”的功能感到有点迷茫，这是一个很正常的现象。除非是深度参与 Kubernetes 的开发，否则一定会有很多遗漏的地方。我们只要保持两个基本点不动摇：1. 懂 Kubernetes 架构和最核心的能力；2. 懂得怎么快速定位我们需要的能力。关于第二点，我们将在大乘期介绍，stay tuned！
+
+### 第六阶段 练虚期（4-6 周，每周 8-10 小时）
 
 #### 目标
 
@@ -320,7 +417,7 @@ FlexVolume 是 Kubernetes 自带的对接外部存储的方案，用户编写少
 - 推荐实现一个端到端的 Kubernetes 控制器，可以对整个 Kubernetes 的二次开发有更加深入的了解。此外，针对所有的扩展能力，建议先建立一个全面的认识，再根据需要深入某一项能力。
 - 我们除了通过用户手册来学习上面的技术，也可多参考 Kubernetes 的花式设计文档，主要是 [Design Proposals](https://github.com/kubernetes/community/tree/master/contributors/design-proposals)、[KEPs](https://github.com/kubernetes/enhancements/tree/master/keps)。
 
-### 第六阶段 大乘期（终身学习）
+### 第七阶段 大乘期（终身学习）
 
 #### 目标
 
