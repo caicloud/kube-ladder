@@ -256,7 +256,7 @@
 - https://github.com/kubernetes/kube-proxy
 - https://github.com/kubernetes/kubectl
 
-当然，直接裸看配置有点硬核。为方便入手，下面我们简单总结部份功能（笼统的分为 Master 和 Node）：
+当然，直接裸看配置有点硬核。为方便入手，下面我们简单总结部分功能（笼统的分为 Master 和 Node）：
 
 *Master*
 
