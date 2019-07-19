@@ -1,86 +1,83 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Single Node Installation](#single-node-installation)
-  - [Install kubectl Binary](#install-kubectl-binary)
-  - [Minikube](#minikube)
-    - [Installation](#installation)
-    - [Start Minikube](#start-minikube)
-    - [Verify installation](#verify-installation)
-  - [Kind](#kind)
-    - [Installation](#installation-1)
-    - [Verify installation](#verify-installation-1)
-  - [Alternatives](#alternatives)
+- [单机部署](#%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2)
+  - [安装 kubectl](#%E5%AE%89%E8%A3%85-kubectl)
+  - [使用 Minikube 部署 Kubernetes](#%E4%BD%BF%E7%94%A8-minikube-%E9%83%A8%E7%BD%B2-kubernetes)
+    - [安装](#%E5%AE%89%E8%A3%85)
+    - [验证](#%E9%AA%8C%E8%AF%81)
+  - [使用 Kind 部署 Kubernetes](#%E4%BD%BF%E7%94%A8-kind-%E9%83%A8%E7%BD%B2-kubernetes)
+    - [安装](#%E5%AE%89%E8%A3%85-1)
+    - [验证](#%E9%AA%8C%E8%AF%81-1)
+  - [其它开源安装工具](#%E5%85%B6%E5%AE%83%E5%BC%80%E6%BA%90%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Single Node Installation
+# 单机部署
 
-## Install kubectl Binary
+## 安装 kubectl
 
-Kubectl is a command line interface for running commands against Kubernetes clusters.
+Kubectl 是 Kubernetes 自带的命令行工具，可以用它直接操作 Kubernetes。
 
-For macOS, run:
+macOS，执行：
 
 ```bash
 # using brew https://brew.sh/
 brew install kubernetes-cli
 ```
 
-For Linux, run:
+Linux，执行：
 
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 ```
 
-For Windows,
+Windows，执行：
 
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/windows/amd64/kubectl.exe
 ```
 
-## Minikube
+## 使用 Minikube 部署 Kubernetes
 
-Using [Minikube](https://github.com/kubernetes/minikube) to create a single node Kubernetes cluster on your laptop.
+[Minikube](https://github.com/kubernetes/minikube) 用于本地部署 kubernetes 集群，支持 macOS，Linux，和 Windows。
 
-**Note**: a lot of resources are blocked by GFW, e.g. minikube iso, gcr.io docker images. Simply following
-upstream guide is not enough to run a local kubernetes.
+**注意**：**科学上网**是必须的，否则 minikube iso 镜像文件，gcr.io 的 Docker 镜像等将无法下载。
 
-### Installation
+### 安装
+
+**下载依赖**：
 
 * *macOS 10.12 (Sierra)*
-  * Requires installing a hypervisor, such as [hyperkit](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#hyperkit-driver) (recommended) or [VirtualBox]
-  * using [brew](https://brew.sh/): `brew cask install minikube`
-  * manually: `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && sudo install minikube-darwin-amd64 /usr/local/bin/minikube`
+  * 要求安装 hypervisor，比如 [hyperkit](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#hyperkit-driver) （推荐）或 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  * 使用 [brew](https://brew.sh/) ： `brew cask install minikube`
+  * 或者使用 curl： `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && sudo install minikube-darwin-amd64 /usr/local/bin/minikube`
 
 * *Windows 10*
-  * Requires a hypervisor, such as [VirtualBox] (recommended) or HyperV
-  * VT-x/AMD-v virtualization must be enabled in BIOS
-  * using [chocolatey](https://chocolatey.org/) `choco install minikube`
-  * manually: Download and run the [installer](https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe)
+  * 要求安装 hypervisor，比如 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) （推荐）或 [HyperV](https://docs.docker.com/machine/drivers/hyper-v/)
+  * BIOS 中必须开启 VT-x/AMD-v virtualization
+  * 使用 [chocolatey](https://chocolatey.org/) `choco install minikube`
+  * 或者通过链接下载： Download and run the [installer](https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe)
 
 * *Linux*
-  * Requires either the [kvm2 driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#kvm2-driver) (recommended), or [VirtualBox]
-  * VT-x/AMD-v virtualization must be enabled in BIOS
-  * manually: `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube`
+  * 要求安装 [kvm2 driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#kvm2-driver) （推荐）或 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  * BIOS 中必须开启 VT-x/AMD-v virtualization
+  * 使用 curl： `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube`
 
-### Start Minikube
+**确认你的 minikube 至少是 v1.2.0**：
 
-Make sure minkube version is at least v1.2.0:
-
-```txt
+```sh
 $ minikube version
 minikube version: v1.2.0
 ```
 
-If not, please run upgrade (re-install) it first.
+**启动 Minikube**：
 
-Then, start minikube:
+**注意**： 这里我们使用的是 VirtualBox，如果你用的其它，可能会需要另外的配置，请按照上一节 👆 的链接查找。
 
-**NOTE**: we use VirtualBox here, if you are using hyperkit, please run with `minikube start --vm-driver hyperkit`
-
-```txt
+```sh
 $ minikube start
 😄  minikube v1.2.0 on darwin (amd64)
 🔥  Creating virtualbox VM (CPUs=2, Memory=2048MB, Disk=20000MB) ...
@@ -93,25 +90,27 @@ $ minikube start
 🏄  Done! kubectl is now configured to use "minikube"
 ```
 
-### Verify installation
+### 验证
 
-We can verify installation via:
+执行下面的命令：
 
-```txt
+```sh
 $ kubectl get nodes
 NAME       STATUS   ROLES    AGE    VERSION
 minikube   Ready    master   4m5s   v1.15.0
 ```
 
-## Kind
+若输出正常，则表示创建成功。
 
-Another way to deploy a local kubernetes cluater is [kind], it is a tool for running local Kubernetes clusters using Docker container "nodes".
+## 使用 Kind 部署 Kubernetes
 
-**NOTE**: you must have [go] and [docker] installed before doing this, and go 1.12.6 or greater is needed.
+[Kind](https://github.com/kubernetes-sigs/kind) 是另一个 Kubernetes 集群部署工具，通过 Docker 容器 "nodes" 完成部署。
 
-### Installation
+**注意**： 在这之前，你必须安装 [go](https://golang.org/) 和 [docker](https://www.docker.com/)，并且 go 的版本至少是 1.12.6。
 
-```txt
+### 安装
+
+```sh
 $ GO111MODULE="on" go get sigs.k8s.io/kind && kind create cluster
 ...
 Creating cluster "kind" ...
@@ -127,33 +126,22 @@ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 kubectl cluster-info
 ```
 
-### Verify installation
+**注意**: 请务必执行输出中的命令，以配置 kubeconfig。
 
-**Notice**: you must set kubeconfig via:
+### 验证
 
-```bash
-$ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-```
+执行下面的命令：
 
-We can verify installation via:
-
-```txt
+```sh
 $ kubectl get nodes
 NAME                 STATUS   ROLES    AGE     VERSION
 kind-control-plane   Ready    master   2m54s   v1.15.0
 ```
 
-## Alternatives
-
-Some other open source projects with slightly different but overlapping use cases, features etc.
+## 其它开源安装工具
 
 - https://github.com/bsycorp/kind
 - https://github.com/ubuntu/microk8s
 - https://github.com/kinvolk/kube-spawn
 - https://github.com/danderson/virtuakube
 - https://github.com/kubernetes-sigs/kubeadm-dind-cluster
-
-[VirtualBox]: https://www.virtualbox.org/wiki/Downloads
-[go]: https://golang.org/
-[docker]: https://www.docker.com/
-[kind]: https://github.com/kubernetes-sigs/kind
