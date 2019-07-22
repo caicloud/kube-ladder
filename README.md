@@ -118,6 +118,7 @@
 - 官方文档：[Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)
 - feisky 的博客：[Kubernetes 指南之核心原理](https://kubernetes.feisky.xyz/he-xin-yuan-li/index)
 - kubectl run 的背后流程（难）：[What happens when I type kubectl run?](https://github.com/jamiehannaford/what-happens-when-k8s)
+- kubectl run 的背后流程中文版：[kubectl 创建 Pod 背后到底发生了什么？](https://mp.weixin.qq.com/s/ctdvbasKE-vpLRxDJjwVMw)
 
 接下来，推荐从 0 开始部署一个 Kubernetes 集群（不使用任何工具），来加深对各个组件的理解：解决部署中出现的各种问题，查看组件启动日志等等。如果时间有限，也可以尝试使用 kubeadm 等工具来部署集群。目前 Kubernetes 集群部署自动化已经做得比较完善，但出于学习目的，再次墙裂推荐手动安装。关于手动安装集群，可以参考文档 [lab3-manual-installtion](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab3-manual-installtion.md)。
 
