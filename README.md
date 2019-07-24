@@ -479,6 +479,7 @@ Twitter 会根据你的喜好推荐其他相关内容，接下来就自由发挥
 
 - [Kubernetes Blog](https://kubernetes.io/blog/)
 - [CNCF Blog](https://www.cncf.io/category/blog/)
+- [CaiCloud Blog](https://caicloud.io/blog)
 
 可以关注的优秀 Blog 很多，这里就不一一列举。
 
