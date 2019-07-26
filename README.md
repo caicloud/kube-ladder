@@ -365,8 +365,9 @@ Kubernetes API 访问扩展主要是通过 Webhook 来实现。注意只有访�
 
 - [扩展接口（Scheduler Extender）](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/scheduling/scheduler_extender.md)：类似 Webhook，调用外部服务进行调度决策
 - [多调度器](https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/)：支持在 Kubernetes 运行多个调度器调度不同作业
+- [调度器框架](https://kubernetes.io/docs/concepts/configuration/scheduling-framework/)：定义一套 Go API，使用户无需 fork Kubernetes Scheduler 代码即可完成“代码级”的定制
 
-针对简单场景，我们可以直接使用 Scheduler Extender 即可，例如按 GPU 型号调度。复杂调度场景可以使用多调度器，例如基于流图的调度器 [poseidon](https://kubernetes.io/docs/concepts/extend-kubernetes/poseidon-firmament-alternate-scheduler/)。一般而言，使用 Extender 即可满足大多数场景。
+针对简单场景，我们可以直接使用 Scheduler Extender 即可，例如按 GPU 型号调度。复杂调度场景可以使用多调度器或调度器框架，例如基于流图的调度器 [poseidon](https://kubernetes.io/docs/concepts/extend-kubernetes/poseidon-firmament-alternate-scheduler/)，批处理调取器 [kube-batch](https://github.com/kubernetes-sigs/kube-batch) 等。一般而言，使用 Extender 即可满足大多数场景。
 
 *网络扩展能力*
 
