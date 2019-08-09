@@ -71,7 +71,7 @@
 
 学习任何系统的之前，了解其出现的背景和意义都是必不可少的，为什么会出现 Kubernetes？它解决了什么问题？有没有其他类似的系统？这里推荐阅读才云科技 CEO 张鑫在 2017 年文章《[从风口浪尖到十字路口，写在 Kubernetes 两周年之际](https://mp.weixin.qq.com/s/hrgXzt7YKVf6ZCFzJ-WTFA)》。
 
-接下来，在了解 Kubernetes 系统本质之前，我们需要对 Kubernetes 有一个较为"感性"的认识，打消对 Kubernetes 的畏难情绪。这里，我们推荐使用 [minikube](https://github.com/kubernetes/minikube) 或 [kind](https://github.com/kubernetes-sigs/kind) 部署一个本地环境，然后开始部署一个"真实"的应用（minikube 安装需要使用科学上网）。如果想一开始就挑战更高难度的安装方式（不推荐），可以使用 [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) 或者手动部署所有组件。关于安装，可以参考文档 [lab1-installation](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab1-installation.md)。
+接下来，在了解 Kubernetes 系统本质之前，我们需要对 Kubernetes 有一个较为"感性"的认识，打消对 Kubernetes 的畏难情绪。这里，我们推荐使用 [minikube](https://github.com/kubernetes/minikube) 或 [kind](https://github.com/kubernetes-sigs/kind) 部署一个本地环境，然后开始部署一个"真实"的应用（minikube 安装需要使用科学上网，或使用[“国内版” minikube](https://yq.aliyun.com/articles/221687)）。如果想一开始就挑战更高难度的安装方式（不推荐），可以使用 [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) 或者手动部署所有组件。关于安装，可以参考文档 [lab1-installation](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab1-installation.md)。
 
 在安装好环境之后，可以开始动手实践最基本的 Kubernetes 概念。在第一阶段，我们推荐熟练使用以下常用资源和概念：Pod、Node、Label、Event、Service、Configmap & Secret、Deployment、Namespace。相关学习可以参考文档 [lab2-application-and-service](https://github.com/caicloud/kube-ladder/blob/master/tutorials/lab2-application-and-service.md)。
 
