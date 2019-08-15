@@ -1508,7 +1508,7 @@ how.nice.to.look=fairlyNice
 
 ## Readings
 
-* [kubernetes configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configmap/)
+* [kubernetes configmap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
 * [distribute secret](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
 
 
