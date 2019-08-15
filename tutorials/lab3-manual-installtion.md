@@ -6,6 +6,7 @@
   - [目标](#%E7%9B%AE%E6%A0%87)
   - [假定](#%E5%81%87%E5%AE%9A)
   - [准备环境](#%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83)
+  - [安装网络插件](#安装网络插件)
   - [安装必要工具](#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E5%B7%A5%E5%85%B7)
     - [安装 CFSSL](#%E5%AE%89%E8%A3%85-cfssl)
       - [Linux](#linux)
@@ -130,6 +131,16 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 sysctl --system
+```
+
+## 安装网络插件
+
+```bash
+mkdir -p /opt/cni/bin
+cd /opt/cni/bin
+wget https://github.com/containernetworking/plugins/releases/download/v0.7.1/cni-plugins-amd64-v0.7.1.tgz
+tar -xzvf cni-plugins-amd64-v0.7.1.tgz 
+rm -rf cni-plugins-amd64-v0.7.1.tgz 
 ```
 
 **除非另有说明，以下所有操作都是在 master 上执行。**
