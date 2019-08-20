@@ -4,28 +4,31 @@
 
 - [Introduction](#introduction)
 - [Kubernetes Job](#kubernetes-job)
-  - [Using Jobs](#using-jobs)
+  - [Using Job](#using-job)
   - [Readings](#readings)
+- [Kubernetes CronJob](#kubernetes-cronjob)
+  - [Using CronJob](#using-cronjob)
+  - [Readings](#readings-1)
 - [Kubernetes Daemonset](#kubernetes-daemonset)
   - [Using Daemonset](#using-daemonset)
-  - [Readings](#readings-1)
+  - [Readings](#readings-2)
 - [Resource quota](#resource-quota)
   - [Using Resource quota](#using-resource-quota)
-  - [Readings](#readings-2)
+  - [Readings](#readings-3)
 - [Kubernetes Horizontal Pod Autoscaler](#kubernetes-horizontal-pod-autoscaler)
   - [Using HPA](#using-hpa)
-  - [Readings](#readings-3)
+  - [Readings](#readings-4)
 - [Kubernetes Volume](#kubernetes-volume)
   - [Using volume](#using-volume)
-  - [Readings](#readings-4)
+  - [Readings](#readings-5)
 - [Kubernetes PV & PVC](#kubernetes-pv--pvc)
   - [Using PV & PVC](#using-pv--pvc)
-  - [Readings](#readings-5)
+  - [Readings](#readings-6)
 - [Kubernetes StorageClass](#kubernetes-storageclass)
   - [Using StorageClass](#using-storageclass)
   - [Default StorageClass](#default-storageclass)
   - [StorageClass Provisioner](#storageclass-provisioner)
-  - [Readings](#readings-6)
+  - [Readings](#readings-7)
 - [Exercise](#exercise)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -36,10 +39,9 @@
 
 # Kubernetes Job
 
-## Using Jobs
+## Using Job
 
-Kubernetes Job 通过创建 Pod 来执行一次性任务；不同于单独跑一个 Pod，由 Job 运行起来的 Pod
-在机器故障等问题下会重新调度 Pod，因此更加健壮。
+Kubernetes Job 通过创建 Pod 来批量执行一次性任务；不同于单独跑一个 Bare Pod，由 Job 运行起来的 Pod 在机器故障等问题下会重新调度 Pod，因此更加健壮。
 
 下面，我们通过创建一个 Pod 来感受一下 Job 的使用：
 
@@ -48,30 +50,29 @@ $ kubectl create -f resources/job.yaml
 job "pi" created
 
 $ kubectl get job
-NAME      DESIRED   SUCCESSFUL   AGE
-pi        5         0            4s
+NAME   COMPLETIONS   DURATION   AGE
+pi     1/5           29s        29s
 
-$ kubectl get pods
-NAME                    READY     STATUS              RESTARTS   AGE
-nginx-689083664-53ol0   1/1       Running             0          19h
-pi-jmurq                0/1       ContainerCreating   0          9s
+$ kubectl get pods -l job-name=pi
+NAME       READY   STATUS      RESTARTS   AGE
+pi-76h5p   1/1     Running     0          12s
+pi-fhww6   0/1     Completed   0          36s
 ```
 
 一段时间之后，Pod 全部运行结束，我们可以通过 `kubectl get pods` 查看：
 
 ```sh
-$ kubectl get pods
-NAME                    READY     STATUS      RESTARTS   AGE
-nginx-689083664-53ol0   1/1       Running     0          20h
-pi-fh4lb                0/1       Completed   0          46m
-pi-jmurq                0/1       Completed   0          53m
-pi-mffpb                0/1       Completed   0          50m
-pi-q3x22                0/1       Completed   0          49m
-pi-tlgu1                0/1       Completed   0          47m
+$ kubectl get pods -l job-name=pi
+NAME       READY   STATUS      RESTARTS   AGE
+pi-6lgqw   0/1     Completed   0          45s
+pi-76h5p   0/1     Completed   0          68s
+pi-fhww6   0/1     Completed   0          92s
+pi-mf96j   0/1     Completed   0          2m17s
+pi-w9v4l   0/1     Completed   0          115s
 
 $ kubectl get job
-NAME      DESIRED   SUCCESSFUL   AGE
-pi        5         5            56m
+NAME   COMPLETIONS   DURATION   AGE
+pi     5/5           117s       3m8s
 ```
 
 观察上述 Pod 的 AGE 列，可以发现 Job 内的 Pod 都是依次运行的（总共 5 个 Pod）。Job 支持并发运行等多种控制，我们在后续任务中实现。
@@ -82,14 +83,52 @@ Job 运行完之后，删除 Job 会将所有运行结束的 Pods 也同时删�
 $ kubectl delete job pi
 job "pi" deleted
 
-$ kubectl get pods
-NAME                    READY     STATUS    RESTARTS   AGE
-nginx-689083664-53ol0   1/1       Running   0          20h
+$ kubectl get pods -l job-name=pi
+No resources found.
 ```
 
 ## Readings
 
 * [kubernetes job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
+
+# Kubernetes CronJob
+
+## Using CronJob
+
+Kubernetes CronJob 即定时任务，就类似于 Linux 的 crontab，在指定的时间周期运行指定的作业。
+
+这里我们通过 kubectl create 创建一个 CronJob：
+
+```sh
+$ kubectl create -f resources/cronjob.yaml
+cronjob.batch/hello created
+```
+
+另外，你也可以用 kubectl run 来创建一个 CronJob：
+
+`kubectl run hello --schedule="*/1 * * * *" --restart=OnFailure --image=cargo.caicloud.io/caicloud/busybox:latest -- /bin/sh -c "date; echo Hello from the Kubernetes cluster"`
+
+查看 CronJob：
+
+```sh
+$ kubectl get cronjob
+NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        57s             69m
+$ kubectl get jobs
+NAME               COMPLETIONS   DURATION   AGE
+hello-1566286260   1/1           11s        46s
+```
+
+删除 CronJob：
+
+```sh
+# 删除 CronJob 会删除它创建的所有 job 和 pod，并停止正在创建的 job
+$ kubectl delete cronjob hello
+cronjob.batch "hello" deleted
+```
+
+## Readings
+
 * [kubernetes cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
 
 # Kubernetes Daemonset
