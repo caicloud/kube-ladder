@@ -10,7 +10,7 @@
     - [安装 CFSSL](#%E5%AE%89%E8%A3%85-cfssl)
       - [Linux](#linux)
       - [验证](#%E9%AA%8C%E8%AF%81)
-    - [安装 kubectl](#%E5%AE%89%E8%A3%85-kubectl)
+    - [安装 Kubectl](#%E5%AE%89%E8%A3%85-kubectl)
       - [Linux](#linux-1)
       - [验证](#%E9%AA%8C%E8%AF%81-1)
   - [配置 CA 并创建 TLS 证书](#%E9%85%8D%E7%BD%AE-ca-%E5%B9%B6%E5%88%9B%E5%BB%BA-tls-%E8%AF%81%E4%B9%A6)
@@ -54,15 +54,14 @@
     - [配置 Kubelet](#%E9%85%8D%E7%BD%AE-kubelet)
     - [配置 Kube-Proxy](#%E9%85%8D%E7%BD%AE-kube-proxy)
     - [启动 worker 服务](#%E5%90%AF%E5%8A%A8-worker-%E6%9C%8D%E5%8A%A1)
-    - [验证](#%E9%AA%8C%E8%AF%81-4)
   - [配置 Kubectl](#%E9%85%8D%E7%BD%AE-kubectl)
     - [admin kubeconfig](#admin-kubeconfig)
-    - [验证](#%E9%AA%8C%E8%AF%81-5)
+    - [验证](#%E9%AA%8C%E8%AF%81-4)
   - [配置 Pod 网络路由](#%E9%85%8D%E7%BD%AE-pod-%E7%BD%91%E7%BB%9C%E8%B7%AF%E7%94%B1)
     - [安装](#%E5%AE%89%E8%A3%85)
   - [部署 DNS 扩展](#%E9%83%A8%E7%BD%B2-dns-%E6%89%A9%E5%B1%95)
     - [DNS 扩展](#dns-%E6%89%A9%E5%B1%95)
-    - [验证](#%E9%AA%8C%E8%AF%81-6)
+    - [验证](#%E9%AA%8C%E8%AF%81-5)
   - [烟雾测试](#%E7%83%9F%E9%9B%BE%E6%B5%8B%E8%AF%95)
     - [数据加密](#%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86)
     - [部署](#%E9%83%A8%E7%BD%B2)
@@ -86,10 +85,10 @@
 ## 假定
 
 - 本文基于 Kubernetes v1.15.0
-- Cluster Pod CIDR is 10.244.0.0/16
-- Cluster Service CIDR is 10.250.0.0/24
-- `kubernetes` service 将跑在 10.250.0.1
-- `dns` service 将跑在 10.250.0.10
+- Cluster Pod CIDR: 10.244.0.0/16
+- Cluster Service CIDR: 10.250.0.0/24
+- `kubernetes` service: 10.250.0.1
+- `dns` service: 10.250.0.10
 
 ## 准备环境
 
@@ -100,7 +99,7 @@
 
 **并在准备好的所有节点上，执行以下操作：**
 
-如果各个主机启用了防火墙，需要开放 k8s 各个组件所需要的端口，可以查看 [Installing kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/) 中的 `Check required ports` 一节。
+如果各个主机启用了防火墙，需要开放 k8s 各个组件所需要的端口，可以查看 [Installing kubeadm - Check required ports](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports)。
 这里简单起见直接禁用防火墙：
 
 ```bash
@@ -140,7 +139,7 @@ sysctl --system
 
 ### 安装 CFSSL
 
-[cfssl]() 和 [cfssljson]() 命令行工具用于提供 PKI Infrastructure 基础设施与生成 TLS 证书。
+cfssl 和 cfssljson 命令行工具用于提供 PKI Infrastructure 基础设施与生成 TLS 证书。
 
 #### Linux
 
@@ -167,9 +166,9 @@ Runtime: go1.6
 
 **注意**：cfssljson 命令行工具没有提供查询版本的方法。
 
-### 安装 kubectl
+### 安装 Kubectl
 
-[kubectl]() 命令行工具用来与 Kubernetes API Server 交互，可以在 Kubernetes 官方网站下载并安装 kubectl。
+kubectl 命令行工具用来与 Kubernetes API Server 交互，可以在 Kubernetes 官方网站下载并安装 kubectl。
 
 #### Linux
 
@@ -302,16 +301,21 @@ admin.pem
 
 #### Kubelet 客户端凭证
 
-Kubernetes 使用 [special-purpose authorization mode](https://kubernetes.io/docs/admin/authorization/node/)（被称作 Node Authorizer）授权来自 [Kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet)
-的 API 请求。为了通过 Node Authorizer 的授权, Kubelet 必须使用一个署名为 `system:node:<nodeName>` 的凭证来证明它属于 `system:nodes` 用户组。本节将会给每台 worker 节点创建符合 Node Authorizer 要求的凭证。
+Kubernetes 使用 [special-purpose authorization mode](https://kubernetes.io/docs/admin/authorization/node/)（被称作 Node Authorizer）授权来自 [Kubelet](https://kubernetes.io/docs/concepts/overview/components/#kubelet) 的 API 请求。
+
+为了通过 Node Authorizer 的授权, Kubelet 必须使用一个署名为 `system:node:<nodeName>` 的凭证来证明它属于 `system:nodes` 用户组。本节将会给每台 worker 节点创建符合 Node Authorizer 要求的凭证。
 
 给每台 worker 节点创建凭证和私钥：
 
 ```sh
-# 此处只给 worker-1 创建，若你有多个 worker 节点，请替换 worker-1 的值并继续操作
+# 此处只给 worker-1 创建，若你有多个 worker 节点，请替换相应的值并继续操作
+export WORKER1_HOSTNAME=worker-1
+# 请替换为你所用节点的 IP
+export WORKER1_IP=192.168.133.42
+
 cat > worker-1-csr.json <<EOF
 {
-  "CN": "system:node:worker-1",
+  "CN": "system:node:${WORKER1_HOSTNAME}",
   "key": {
     "algo": "rsa",
     "size": 2048
@@ -485,6 +489,9 @@ EOF
 创建 Kubernetes API Server 凭证与私钥:
 
 ```sh
+# 请替换为你所用节点的 IP
+export MASTER_IP=192.168.133.41
+
 cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
@@ -550,7 +557,7 @@ scp ca.pem worker-1-key.pem worker-1.pem worker-1:~/
 
 ```sh
 scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem master-1:~/
+    service-account-key.pem service-account.pem master:~/
 ```
 
 > `kube-proxy`、`kube-controller-manager`、`kube-scheduler` 和 `kubelet` 客户端凭证将会在下一节中用来创建客户端签发请求文件。
@@ -701,7 +708,7 @@ scp worker-1.kubeconfig kube-proxy.kubeconfig worker-1:~/
 将 `admin`、`kube-controller-manager` 与 `kube-scheduler` kubeconfig 配置文件复制到每个控制节点上：
 
 ```sh
-scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig master-1:~/
+scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig master:~/
 ```
 
 ## 配置和生成密钥
@@ -741,7 +748,7 @@ EOF
 将 `encryption-config.yaml` 复制到每个控制节点上：
 
 ```sh
-scp encryption-config.yaml master-1:~/
+scp encryption-config.yaml master:~/
 ```
 
 ## 部署 etcd 群集
@@ -1058,7 +1065,12 @@ EOF
 
 ## 部署 Kubernetes Workers 节点
 
-本部分将会部署 Kubernetes Worker 节点。每个节点上将会安装以下服务：[runc](https://github.com/opencontainers/runc), [gVisor](https://github.com/google/gvisor), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), 和 [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies)。
+本部分将会部署 Kubernetes Worker 节点。每个节点上将会安装以下服务：
+
+- [Docker](https://www.docker.com)
+- [container networking plugins](https://github.com/containernetworking/cni)
+- [kubelet](https://kubernetes.io/docs/admin/kubelet)
+- [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies)
 
 ### 安装依赖
 
@@ -1087,6 +1099,7 @@ sudo systemctl start docker
 
 ```sh
 wget --timestamping \
+  https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
   https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl \
   https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kube-proxy \
   https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubelet
@@ -1096,6 +1109,7 @@ wget --timestamping \
 
 ```sh
 sudo mkdir -p \
+  /opt/cni/bin \
   /var/lib/kubelet \
   /var/lib/kube-proxy \
   /var/lib/kubernetes \
@@ -1115,6 +1129,7 @@ sudo mv kubectl kube-proxy kubelet /usr/local/bin/
 sudo cp worker-1-key.pem worker-1.pem /var/lib/kubelet/
 sudo cp worker-1.kubeconfig /var/lib/kubelet/kubeconfig
 sudo mv ca.pem /var/lib/kubernetes/
+sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C /opt/cni/bin/
 ```
 
 生成 `kubelet.service` systemd 配置文件：
@@ -1210,21 +1225,6 @@ sudo systemctl start kubelet kube-proxy
 
 > 记得在所有 worker 节点上面都运行一遍。
 
-### 验证
-
-登入任意一台控制节点查询 Nodes 列表
-
-```sh
-kubectl get nodes --kubeconfig admin.kubeconfig
-```
-
-输出为
-
-```sh
-NAME       STATUS   ROLES    AGE   VERSION
-worker-1   Ready    <none>   19s   v1.15.0
-```
-
 ## 配置 Kubectl
 
 本部分将生成一个用于 admin 用户的 kubeconfig 文件。
@@ -1236,6 +1236,9 @@ worker-1   Ready    <none>   19s   v1.15.0
 为 `admin` 用户生成 kubeconfig 文件：
 
 ```sh
+# 请替换为你所用节点的 IP
+export MASTER_IP=192.168.133.41
+
 kubectl config set-cluster kubernetes-training \
   --certificate-authority=ca.pem \
   --embed-certs=true \
@@ -1254,7 +1257,7 @@ kubectl config use-context kubernetes-training
 
 ### 验证
 
-检查远端 Kubernetes 群集的健康状况:
+检查远端 Kubernetes 集群的健康状况:
 
 ```sh
 kubectl get componentstatuses
@@ -1278,9 +1281,11 @@ kubectl get nodes
 输出为
 
 ```sh
-NAME       STATUS   ROLES    AGE     VERSION
-worker-1   Ready    <none>   3m26s   v1.15.0
+NAME       STATUS     ROLES    AGE     VERSION
+worker-1   NotReady   <none>   9m59s   v1.15.0
 ```
+
+此时节点已经注册成功了，但节点的状态仍然是 `NotReady`，我们需要继续安装集群网络以使其 `Ready`。
 
 ## 配置 Pod 网络路由
 
@@ -1455,7 +1460,7 @@ kubectl port-forward $POD_NAME 8080:80
 
 输出为
 
-```sh
+```txt
 Forwarding from 127.0.0.1:8080 -> 80
 Forwarding from [::1]:8080 -> 80
 ```
