@@ -1529,7 +1529,7 @@ how.nice.to.look=fairlyNice
 4.  进一步学习 kubectl run。回答如何向 Pod 注入环境变量？如何查看是否注入成功？
 5.  进一步学习 kubectl rollout。回答如何通过 kubectl rollout 将应用回滚到指定版本？
 6.  Pod LivenessProbe 实验中，检查方式采用的是 http 模式。回答如何使用 exec 进行健康检查？请写出 yaml 文件。
-7.  进一步学习 Pod Lifecycle。回答如何使用 Prestart Hook？请写出 yaml 文件。
+7.  进一步学习 Pod Lifecycle。回答如何使用 PostStart Hook？请写出 yaml 文件。
 8.  登录宿主机，使用 docker ps 查看 Pod，如何理解 docker ps 输出？
 9.  学习使用 Secret，然后创建一个 Secret 并在 Pod 内访问。请写出 secret 和 pod 的 yaml 文件。
 10. ConfigMap 实验中，我们采用文件加载的方式使用 ConfigMap。请写出利用环境变量加载 configmap 的例子。
