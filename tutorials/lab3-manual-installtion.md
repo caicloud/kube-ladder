@@ -1128,7 +1128,7 @@ sudo mv kubectl kube-proxy kubelet /usr/local/bin/
 ```sh
 sudo cp worker-1-key.pem worker-1.pem /var/lib/kubelet/
 sudo cp worker-1.kubeconfig /var/lib/kubelet/kubeconfig
-sudo mv ca.pem /var/lib/kubernetes/
+sudo cp ca.pem /var/lib/kubernetes/
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C /opt/cni/bin/
 ```
 
