@@ -786,6 +786,8 @@ ETCD_NAME=$(hostname -s)
 
 生成 `etcd.service` 的 systemd 配置文件
 
+*请注意：对于使用公网主机（如云服务器等）的操作者， etcd 绑定的服务端口（即以下的 `${MASTER_IP}` ）应使用内网 IP 地址。*
+
 ```sh
 cat <<EOF | sudo tee /etc/systemd/system/etcd.service
 [Unit]
