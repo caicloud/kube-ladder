@@ -1013,7 +1013,7 @@ etcd-0               Healthy   {"health":"true"}
 
 本节将会配置 API Server 访问 Kubelet API 的 RBAC 授权。访问 Kubelet API 是获取 metrics、日志以及执行容器命令所必需的。
 
-> 这里设置 Kubeket `--authorization-mode` 为 `Webhook` 模式。Webhook 模式使用 [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API 来决定授权。
+> 这里设置 Kubelet `--authorization-mode` 为 `Webhook` 模式。Webhook 模式使用 [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API 来决定授权。
 
 创建 `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole) 以允许请求 Kubelet API 和执行大部分来管理 Pods 的任务:
 
