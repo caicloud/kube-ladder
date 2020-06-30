@@ -104,10 +104,6 @@ $ kubectl create -f resources/cronjob.yaml
 cronjob.batch/hello created
 ```
 
-另外，你也可以用 kubectl run 来创建一个 CronJob：
-
-`kubectl run hello --schedule="*/1 * * * *" --restart=OnFailure --image=cargo.caicloud.io/caicloud/busybox:latest -- /bin/sh -c "date; echo Hello from the Kubernetes cluster"`
-
 查看 CronJob：
 
 ```sh
@@ -275,8 +271,9 @@ $ minikube addons list
 使用 HPA 需要设置 CPU 使用率阈值、最大最小 Pod 数量等。这里我们先创建一个只有一个副本的 Deployment，然后逐渐加压，观察副本的变化情况：
 
 ```sh
-# 创建 pod 和 service
-$ kubectl run php-apache --image=cargo.caicloud.io/caicloud/hpa-example:latest --requests=cpu=200m --expose --port=80
+# 创建 deployment 和 service
+$ kubectl apply -f resources/deployment_php_cache.yaml
+$ kubectl expose deployment php-apache --port 80
 service "php-apache" created
 deployment "php-apache" created
 

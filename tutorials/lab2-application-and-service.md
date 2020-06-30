@@ -411,11 +411,11 @@ Pod 是由多个容器组成、是 kubernetes 的最小调度单元、Pod 共享
 
 ## Create Deployment
 
-我们可以通过 yaml 文件创建 Deployment，从而创建应用（类似之前创建 ResourceQuota 的方式）。为了简化应用部署，kubernetes 提供了 run 子命令来快速创建应用。
+我们可以通过 yaml 文件创建 Deployment，从而创建应用。
 
 ```
-$ kubectl run nginx --image=cargo.caicloud.io/caicloud/nginx:1.9.7 --replicas=1 -n tutorial
-deployment "nginx" created
+$ kubectl apply -f resources/deployment_nginx -n tutorial
+deployment.apps/nginx-deployment created
 ```
 
 执行该命令之后，kubernetes 在集群中寻找一台满足需求的机器运行节点，然后该节点上的 agent 启动该应用。
@@ -861,7 +861,7 @@ Pod 被扩容到了 4 个，会将流量导到所有 Pod（而不是只有最开
 首先创建 Deployment 和 Service（确保前面教程的 Deployment 和 Service 已经被删除）：
 
 ```
-kubectl run nginx --image=index.caicloud.io/caicloud/nginx:1.9.7 --replicas=1 -n tutorial
+kubectl apply -f resources/deployment_nginx -n tutorial
 kubectl expose deployment nginx --port 80 --name=nginx -n tutorial
 ```
 
@@ -1083,7 +1083,7 @@ status:
 ## Get resource yaml
 
 用户可以通过 kubectl get <resource> <name> -o yaml 来获取已经部署的资源的 Yaml 文件，我们可以尝试获取之前通过
-`kubectl run`, `kubectl expose` 等命令部署的 Deployment 和 Service。
+`kubectl apply`, `kubectl expose` 等命令部署的 Deployment 和 Service。
 
 ```yaml
 $ kubectl get pods nginx-646b46d648-7c457 -n tutorial -o yaml
@@ -1523,13 +1523,12 @@ how.nice.to.look=fairlyNice
 
 以下问题是在 kubernetes 使用或运维中较常使用的命令或方式方法。
 
-1.  学习 kubectl proxy 命令及其含义。回答如何通过 proxy 访问 kubernetes 集群？
-2.  学习 kubectl port-forward 命令及其含义。回答如何通过 port-forward 访问应用？
-3.  修改 Pod label 使其与 Deployment 不相符，集群有什么变化？
-4.  进一步学习 kubectl run。回答如何向 Pod 注入环境变量？如何查看是否注入成功？
-5.  进一步学习 kubectl rollout。回答如何通过 kubectl rollout 将应用回滚到指定版本？
-6.  Pod LivenessProbe 实验中，检查方式采用的是 http 模式。回答如何使用 exec 进行健康检查？请写出 yaml 文件。
-7.  进一步学习 Pod Lifecycle。回答如何使用 PostStart Hook？请写出 yaml 文件。
-8.  登录宿主机，使用 docker ps 查看 Pod，如何理解 docker ps 输出？
-9.  学习使用 Secret，然后创建一个 Secret 并在 Pod 内访问。请写出 secret 和 pod 的 yaml 文件。
-10. ConfigMap 实验中，我们采用文件加载的方式使用 ConfigMap。请写出利用环境变量加载 configmap 的例子。
+1. 学习 kubectl proxy 命令及其含义。回答如何通过 proxy 访问 kubernetes 集群？
+1. 学习 kubectl port-forward 命令及其含义。回答如何通过 port-forward 访问应用？
+1. 修改 Pod label 使其与 Deployment 不相符，集群有什么变化？
+1. 进一步学习 kubectl rollout。回答如何通过 kubectl rollout 将应用回滚到指定版本？
+1. Pod LivenessProbe 实验中，检查方式采用的是 http 模式。回答如何使用 exec 进行健康检查？请写出 yaml 文件。
+1. 进一步学习 Pod Lifecycle。回答如何使用 PostStart Hook？请写出 yaml 文件。
+1. 登录宿主机，使用 docker ps 查看 Pod，如何理解 docker ps 输出？
+1. 学习使用 Secret，然后创建一个 Secret 并在 Pod 内访问。请写出 secret 和 pod 的 yaml 文件。
+1. ConfigMap 实验中，我们采用文件加载的方式使用 ConfigMap。请写出利用环境变量加载 configmap 的例子。
