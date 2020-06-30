@@ -116,7 +116,7 @@
 首先可以阅读书籍或网上博客，推荐阅读：
 
 - 官方文档：[Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)
-- feisky 的博客：[Kubernetes 指南之核心原理](https://kubernetes.feisky.xyz/he-xin-yuan-li/index)
+- feisky 的博客：[Kubernetes 指南之核心原理](https://kubernetes.feisky.xyz/concepts/index)
 - kubectl run 的背后流程（难）：[What happens when I type kubectl run?](https://github.com/jamiehannaford/what-happens-when-k8s)
 - kubectl run 的背后流程中文版：[kubectl 创建 Pod 背后到底发生了什么？](https://mp.weixin.qq.com/s/ctdvbasKE-vpLRxDJjwVMw)
 
