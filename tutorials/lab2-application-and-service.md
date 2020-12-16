@@ -414,7 +414,7 @@ Pod 是由多个容器组成、是 kubernetes 的最小调度单元、Pod 共享
 我们可以通过 yaml 文件创建 Deployment，从而创建应用。
 
 ```
-$ kubectl apply -f resources/deployment_nginx -n tutorial
+$ kubectl apply -f resources/deployment_nginx.yaml -n tutorial
 deployment.apps/nginx-deployment created
 ```
 
