@@ -360,7 +360,7 @@ namespace 也被用来划分命名空间，即不同 namespace 里的资源可�
 通过 `kubectl create -f`，我们可以轻松地创建一个 namespace：
 
 ```
-$ kubectl create -f resources/ns.yaml
+$ kubectl create namespace tutorial
 namespace "tutorial" created
 ```
 
