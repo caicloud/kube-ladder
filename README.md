@@ -78,6 +78,7 @@
 （可选）仅完成上述内容可能还不足以让我们非常熟悉 Kubernetes 的基本概念，下面列出其他可以参考的资料，大家也可以按照自己的方式去搜索相关的资料：
 - 官方 Tutorial：[Learn Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - 官方 Guestbook 样例：[Guestbook Example](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
+- [Kubernetes Tutorial for Beginners](https://spacelift.io/blog/kubernetes-tutorial)
 
 #### 心法
 
